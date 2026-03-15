@@ -1,0 +1,61 @@
+name: "\U0001F4C4 Add Paper"
+description: Suggest a paper to be added to the list
+title: "[Paper] "
+labels: ["paper-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a paper! Please fill in the details below.
+  - type: input
+    id: title
+    attributes:
+      label: Paper Title
+      placeholder: "e.g., OpenClaw-RL: Train Any Agent Simply by Talking"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Paper Link
+      description: Link to arXiv, conference page, or PDF
+      placeholder: "https://arxiv.org/abs/XXXX.XXXXX"
+    validations:
+      required: true
+  - type: input
+    id: code
+    attributes:
+      label: Code Repository (optional)
+      placeholder: "https://github.com/..."
+    validations:
+      required: false
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Core Framework
+        - Reinforcement Learning & Training
+        - Security & Safety
+        - Multi-Agent Systems & Scientific Research
+        - Benchmark & Evaluation
+        - Memory & Architecture
+        - Skills & Tool Use
+        - Other (please specify in description)
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Brief Description
+      description: A 1-2 sentence summary of the paper's contribution
+      placeholder: "This paper proposes..."
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Publication Date
+      placeholder: "e.g., Mar 2026"
+    validations:
+      required: false
