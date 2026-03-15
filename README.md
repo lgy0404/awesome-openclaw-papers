@@ -2,7 +2,7 @@
 
 A curated collection of academic papers, benchmarks, and resources for the [OpenClaw](https://github.com/openclaw/openclaw) ecosystem — the open-source, self-hosted AI assistant platform.
 
-## 🌐 [Browse the Full Collection →](https://openclaw.github.io/awesome-openclaw-papers/)
+## 🌐 [Browse the Full Collection →](https://lgy0404.github.io/awesome-openclaw-papers/)
 
 The interactive website features search, category filtering, dark mode, and is always up-to-date.
 
