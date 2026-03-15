@@ -1,87 +1,117 @@
 # Contributing to Awesome OpenClaw Papers
 
-Thank you for your interest in contributing! This document provides guidelines for adding papers and resources to this collection.
+Thank you for your interest in contributing! This project uses a **data-driven architecture** — all content lives in a single YAML file, and the website + README are generated automatically.
 
-## How to Contribute
+## Quick Start (3 Steps)
+
+1. **Fork** this repository
+2. **Edit** [`docs/_data/papers.yml`](docs/_data/papers.yml) — the single source of truth
+3. **Submit** a Pull Request — the website auto-rebuilds on merge
+
+That's it! No need to touch HTML, CSS, or README.md.
+
+## Data File Format
+
+All entries live in `docs/_data/papers.yml`. Here's how to add each type:
 
 ### Adding a Paper
 
-1. **Fork** this repository
-2. **Add** your paper entry to the appropriate section in `README.md`
-3. **Submit** a pull request
+Add your entry under the matching category's `papers` list:
 
-### Paper Entry Format
-
-Please follow this format when adding a paper:
-
-```markdown
-- **Paper Title** — Brief description of the paper's contribution (1-2 sentences). [[arXiv, Mon YYYY]](https://arxiv.org/abs/XXXX.XXXXX) [[PDF]](link-to-pdf) [[Code]](link-to-code)
+```yaml
+- title: "Your Paper Title"
+  authors: "Author A, Author B"     # optional
+  description: >
+    A 1-2 sentence summary of the paper's
+    key contribution.
+  date: "2026-03"                    # optional, YYYY-MM
+  links:
+    arxiv: https://arxiv.org/abs/XXXX.XXXXX
+    pdf: https://example.com/paper.pdf   # optional
+    code: https://github.com/...         # optional
+    project: https://example.com         # optional
+  tags: [security, agent, benchmark]     # optional
 ```
 
-**Required fields:**
-- Paper title (bold)
-- Brief description
-- At least one link (arXiv, conference page, or PDF)
+**Required fields:** `title`, `description`, at least one entry in `links`
 
-**Optional fields:**
-- Code repository link
-- Project page link
-- Video/demo link
+### Adding a Blog Post
 
-### Adding a Blog Post or Technical Article
-
-```markdown
-- [Article Title](URL) — Brief description.
+```yaml
+blog_posts:
+  - title: "Your Article Title"
+    description: Brief description of the article.
+    url: https://example.com/article
+    tags: [architecture, tutorial]
 ```
 
 ### Adding a Related Project
 
-Add a new row to the table:
-
-```markdown
-| Project Name | Brief description | [GitHub](URL) |
+```yaml
+projects:
+  - name: ProjectName
+    description: What the project does
+    url: https://github.com/org/repo
 ```
 
-## Guidelines
+### Adding a New Category
 
-### Relevance
+```yaml
+categories:
+  - id: your-category-id
+    name: "Your Category Name"
+    icon: "🔬"
+    description: Brief description of this category
+    papers:
+      - title: "First Paper"
+        description: >
+          Description here.
+        links:
+          arxiv: https://arxiv.org/abs/XXXX.XXXXX
+```
 
-Papers must be directly related to one or more of the following:
-- OpenClaw core framework and architecture
-- Applications built on or integrated with OpenClaw
-- Security and safety analysis of OpenClaw
-- Benchmark and evaluation of OpenClaw agents
-- Memory systems and skill architectures in OpenClaw
-- Multi-agent systems involving OpenClaw
+The website and filter buttons will automatically pick up new categories.
 
-### Quality Standards
+## Regenerating README.md
 
-- Papers should be published on arXiv, at peer-reviewed venues, or as recognized technical reports
-- Blog posts should provide substantial technical content
-- Avoid duplicate entries
+The README is auto-generated from the YAML data. After editing `papers.yml`:
 
-### Categories
+```bash
+python3 scripts/generate_readme.py
+```
 
-If your paper doesn't fit an existing category, feel free to suggest a new one in your pull request. Current categories:
+## Validating Your Changes
 
-- Core Framework
-- Reinforcement Learning & Training
-- Security & Safety
-- Multi-Agent Systems & Scientific Research
-- Benchmark & Evaluation
-- Memory & Architecture
-- Skills & Tool Use
-- Blog Posts & Technical Articles
-- Related Projects
+A CI check runs automatically on PRs. To validate locally:
 
-## Submitting via Issues
+```bash
+python3 scripts/validate_papers.py
+```
 
-If you don't want to submit a pull request, you can also [open an issue](../../issues/new?template=add-paper.yml) with the paper details, and a maintainer will add it.
+## Local Preview
+
+To preview the website locally:
+
+```bash
+cd docs
+bundle install
+bundle exec jekyll serve
+# Open http://localhost:4000
+```
+
+## Quality Checklist
+
+- [ ] Paper is directly related to OpenClaw or its ecosystem
+- [ ] Description is concise (1-2 sentences) and focuses on the contribution
+- [ ] At least one working link is provided
+- [ ] Entry is placed in the correct category
+- [ ] YAML syntax is valid
+- [ ] No duplicate entries
+
+## Don't Want to Edit YAML?
+
+[Submit a paper via GitHub Issue](../../issues/new?template=add-paper.yml) and a maintainer will add it for you.
 
 ## Code of Conduct
 
-Please be respectful and constructive in all interactions. We follow the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
-
-## Questions?
-
-If you have questions about whether a paper is relevant or which category it belongs to, feel free to open an issue for discussion.
+Please be respectful and constructive. We follow the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).

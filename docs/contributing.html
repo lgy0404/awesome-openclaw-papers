@@ -1,0 +1,125 @@
+---
+layout: default
+title: Contributing — Awesome OpenClaw Papers
+---
+
+<section class="page-content">
+  <div class="container">
+    <h1>Contributing Guide</h1>
+    <p>
+      Thank you for helping grow the OpenClaw research community!
+      Adding a paper is as simple as editing a single YAML file.
+    </p>
+
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Fork the Repo</h3>
+        <p>Fork <a href="https://github.com/openclaw/awesome-openclaw-papers">awesome-openclaw-papers</a> on GitHub.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>Edit the Data File</h3>
+        <p>Add your entry to <code>docs/_data/papers.yml</code> — the single source of truth for all content.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Submit a PR</h3>
+        <p>Open a Pull Request. The site will auto-rebuild once merged via GitHub Pages.</p>
+      </div>
+    </div>
+
+    <h2>Data File Format</h2>
+    <p>
+      All papers, blog posts, and projects live in
+      <code>docs/_data/papers.yml</code>. Here's the full schema:
+    </p>
+
+    <h3>Adding a Paper</h3>
+    <p>Add your entry under the matching category in <code>categories</code>:</p>
+    <pre><code>categories:
+  - id: security-safety          # existing category
+    papers:
+      # ... existing papers ...
+
+      - title: "Your Paper Title"
+        authors: "Author A, Author B"     # optional
+        description: >
+          A 1-2 sentence summary of the paper's
+          key contribution.
+        date: "2026-03"                    # optional, YYYY-MM
+        links:
+          arxiv: https://arxiv.org/abs/XXXX.XXXXX
+          pdf: https://example.com/paper.pdf   # optional
+          code: https://github.com/...         # optional
+          project: https://example.com         # optional
+        tags: [security, agent, benchmark]     # optional</code></pre>
+
+    <h3>Adding a Blog Post</h3>
+    <pre><code>blog_posts:
+  # ... existing posts ...
+
+  - title: "Your Article Title"
+    description: Brief description of the article.
+    url: https://example.com/article
+    tags: [architecture, tutorial]</code></pre>
+
+    <h3>Adding a Related Project</h3>
+    <pre><code>projects:
+  # ... existing projects ...
+
+  - name: ProjectName
+    description: What the project does
+    url: https://github.com/org/repo</code></pre>
+
+    <h2>Adding a New Category</h2>
+    <p>If your paper doesn't fit an existing category, add a new one:</p>
+    <pre><code>categories:
+  # ... existing categories ...
+
+  - id: your-category-id
+    name: "Your Category Name"
+    icon: "🔬"
+    description: Brief description of this category
+    papers:
+      - title: "First Paper in This Category"
+        description: >
+          Description here.
+        links:
+          arxiv: https://arxiv.org/abs/XXXX.XXXXX</code></pre>
+    <p>
+      The website and filter buttons will automatically pick up the new
+      category — no template changes needed.
+    </p>
+
+    <h2>Quality Checklist</h2>
+    <ul>
+      <li>Paper is directly related to OpenClaw or its ecosystem</li>
+      <li>Description is concise (1-2 sentences) and focuses on contribution</li>
+      <li>At least one working link is provided</li>
+      <li>Entry is placed in the correct category</li>
+      <li>YAML syntax is valid (indentation, quotes, etc.)</li>
+      <li>No duplicate entries</li>
+    </ul>
+
+    <h2>Don't Want to Edit YAML?</h2>
+    <p>
+      No problem! You can also
+      <a href="https://github.com/openclaw/awesome-openclaw-papers/issues/new?template=add-paper.yml">
+        submit a paper via GitHub Issue
+      </a>
+      and a maintainer will add it for you.
+    </p>
+
+    <h2>Local Preview</h2>
+    <p>To preview the site locally before submitting:</p>
+    <pre><code># Install Jekyll (one-time)
+gem install bundler jekyll
+
+# Run the site
+cd docs
+bundle exec jekyll serve
+
+# Open http://localhost:4000</code></pre>
+  </div>
+</section>

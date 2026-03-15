@@ -1,0 +1,119 @@
+---
+layout: default
+title: Awesome OpenClaw Papers
+---
+
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Awesome OpenClaw Papers</h1>
+    <p class="hero-subtitle">
+      A curated collection of academic papers, benchmarks, and resources
+      tracking the latest research in the <a href="https://github.com/openclaw/openclaw">OpenClaw</a> ecosystem.
+    </p>
+    {% include stats.html %}
+  </div>
+</section>
+
+<section class="search-section">
+  <div class="container">
+    <div class="search-bar">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search papers by title, description, or tag..." autocomplete="off">
+      <kbd class="search-kbd">/</kbd>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      {% for category in site.data.papers.categories %}
+      <button class="filter-btn" data-filter="{{ category.id }}">{{ category.icon }} {{ category.name }}</button>
+      {% endfor %}
+      <button class="filter-btn" data-filter="blog">📝 Blogs</button>
+      <button class="filter-btn" data-filter="projects">📦 Projects</button>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div id="resultsInfo" class="results-info" style="display:none;"></div>
+
+    {% for category in site.data.papers.categories %}
+    <div class="category-section" data-category="{{ category.id }}">
+      <h2 class="category-title">
+        <span class="category-icon">{{ category.icon }}</span>
+        {{ category.name }}
+        <span class="category-count">{{ category.papers | size }}</span>
+      </h2>
+      {% if category.description %}
+      <p class="category-description">{{ category.description }}</p>
+      {% endif %}
+      <div class="papers-grid">
+        {% for paper in category.papers %}
+        {% include paper-card.html paper=paper category_id=category.id %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Blog Posts Section -->
+    <div class="category-section" data-category="blog">
+      <h2 class="category-title">
+        <span class="category-icon">📝</span>
+        Blog Posts & Technical Articles
+        <span class="category-count">{{ site.data.papers.blog_posts | size }}</span>
+      </h2>
+      <div class="papers-grid">
+        {% for post in site.data.papers.blog_posts %}
+        <article class="paper-card blog-card" data-tags="{{ post.tags | join: ',' }}" data-category="blog">
+          <div class="paper-content">
+            <h3 class="paper-title">{{ post.title }}</h3>
+            <p class="paper-description">{{ post.description }}</p>
+            {% if post.tags %}
+            <div class="paper-meta">
+              <div class="paper-tags">
+                {% for tag in post.tags %}
+                <span class="tag" data-tag="{{ tag }}">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="paper-links">
+            <a href="{{ post.url }}" class="paper-link link-url" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Read
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Related Projects Section -->
+    <div class="category-section" data-category="projects">
+      <h2 class="category-title">
+        <span class="category-icon">📦</span>
+        Related Projects
+        <span class="category-count">{{ site.data.papers.projects | size }}</span>
+      </h2>
+      <div class="projects-grid">
+        {% for project in site.data.papers.projects %}
+        <a href="{{ project.url }}" class="project-card" target="_blank" rel="noopener">
+          <h3 class="project-name">{{ project.name }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          <span class="project-link-text">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div id="noResults" class="no-results" style="display:none;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      <p>No results found. Try a different search term or filter.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+title: Awesome OpenClaw Papers
+description: A curated collection of academic papers, benchmarks, and resources for the OpenClaw ecosystem
+url: ""
+baseurl: ""
+
+markdown: kramdown
+highlighter: rouge
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

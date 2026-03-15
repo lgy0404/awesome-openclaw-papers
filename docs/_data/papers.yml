@@ -1,0 +1,210 @@
+# =============================================================================
+# Awesome OpenClaw Papers - Structured Data Source
+# =============================================================================
+# This is the SINGLE SOURCE OF TRUTH for all papers and resources.
+# Both the GitHub Pages site and README.md are generated from this file.
+#
+# HOW TO CONTRIBUTE:
+#   1. Add your entry to the appropriate category below
+#   2. Follow the existing format
+#   3. Submit a Pull Request
+#
+# ENTRY FORMAT:
+#   - title:       (required) Paper / resource title
+#     authors:     (optional) Author list
+#     description: (required) 1-2 sentence summary
+#     date:        (optional) Publication date, e.g. "2026-03"
+#     links:       (required) At least one link
+#       arxiv:     arXiv URL
+#       pdf:       Direct PDF URL
+#       code:      Code repository URL
+#       project:   Project page URL
+#       url:       General URL (for blog posts, docs, etc.)
+#     tags:        (optional) List of tags for filtering
+# =============================================================================
+
+categories:
+  - id: core-framework
+    name: Core Framework
+    icon: "\U0001F9F1"
+    description: OpenClaw core platform and architecture
+    papers:
+      - title: "OpenClaw: Your Own Personal AI Assistant"
+        description: >
+          The official OpenClaw project providing a self-hosted, model-agnostic
+          AI agent platform with Gateway architecture, agentic loop, and modular
+          skill system supporting 5,700+ community-maintained skills.
+        links:
+          code: https://github.com/openclaw/openclaw
+          url: https://docs.openclaw.ai
+        tags: [framework, architecture, open-source]
+
+  - id: reinforcement-learning
+    name: Reinforcement Learning & Training
+    icon: "\U0001F3AF"
+    description: Training methodologies and learning frameworks for OpenClaw agents
+    papers:
+      - title: "OpenClaw-RL: Train Any Agent Simply by Talking"
+        description: >
+          Presents a framework enabling agents to improve through natural
+          conversation by leveraging next-state signals (user replies, tool
+          outputs, state changes) as training data. Introduces extractive
+          rewards via PRM judge and Hindsight-Guided On-Policy Distillation.
+        date: "2026-03"
+        links:
+          arxiv: https://arxiv.org/abs/2603.10165
+        tags: [reinforcement-learning, training, conversation]
+
+  - id: security-safety
+    name: Security & Safety
+    icon: "\U0001F6E1\uFE0F"
+    description: Security analysis, vulnerability research, and safety evaluation
+    papers:
+      - title: "From Assistant to Double Agent: Formalizing and Benchmarking Attacks on OpenClaw for Personalized Local AI Agent"
+        description: >
+          Proposes the Personalized Agent Security Bench (PASB) framework,
+          identifying critical vulnerabilities across prompt processing, tool
+          usage, and memory retrieval stages.
+        date: "2026-02"
+        links:
+          arxiv: https://arxiv.org/abs/2602.08412
+        tags: [security, benchmark, attack, vulnerability]
+
+      - title: "Taming OpenClaw: Security Analysis and Mitigation of Autonomous LLM Agent Threats"
+        description: >
+          Provides a comprehensive five-layer lifecycle security framework
+          analyzing threats including indirect prompt injection, supply chain
+          contamination, memory poisoning, and intent drift.
+        date: "2026-03"
+        links:
+          arxiv: https://arxiv.org/abs/2603.11619
+        tags: [security, prompt-injection, mitigation]
+
+      - title: "A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)"
+        description: >
+          Evaluates the system across six risk dimensions, revealing non-uniform
+          safety profiles with failures particularly under underspecified intent
+          and adversarial steering.
+        date: "2026-02"
+        links:
+          arxiv: https://arxiv.org/abs/2602.14364
+        tags: [safety, audit, evaluation]
+
+  - id: multi-agent
+    name: Multi-Agent Systems & Scientific Research
+    icon: "\U0001F916"
+    description: Multi-agent architectures and autonomous scientific research
+    papers:
+      - title: "From Agent-Only Social Networks to Autonomous Scientific Research: Lessons from OpenClaw and Moltbook"
+        description: >
+          Examines OpenClaw's ecosystem alongside the Moltbook agent-only social
+          network. Presents ClawdLab and Beach.Science platforms for autonomous
+          scientific research using multi-agent architectures with governance
+          structures and verification mechanisms.
+        date: "2026-02"
+        links:
+          arxiv: https://arxiv.org/abs/2602.19810
+        tags: [multi-agent, scientific-research, social-network]
+
+  - id: benchmark-evaluation
+    name: Benchmark & Evaluation
+    icon: "\U0001F4CA"
+    description: Evaluation harnesses, benchmarks, and leaderboards
+    papers:
+      - title: "Claw-Eval"
+        description: >
+          An evaluation harness for assessing LLMs as agents, featuring 104
+          human-verified tasks across 15 services with Docker sandboxes and
+          robust grading. Provides a live leaderboard and transparent
+          benchmarking.
+        date: "2026-03"
+        links:
+          code: https://github.com/claw-eval/claw-eval
+        tags: [benchmark, evaluation, leaderboard]
+
+      - title: "PinchBench"
+        description: >
+          A real-world benchmarking system for evaluating LLM models as OpenClaw
+          coding agents, with 23 tasks spanning productivity, research, writing,
+          coding, analysis, email, memory, and skills categories.
+        links:
+          code: https://github.com/pinchbench/skill
+        tags: [benchmark, coding-agent, real-world]
+
+      - title: "ClawBench"
+        description: >
+          A deterministic, scenario-based evaluation platform for OpenClaw agents
+          using fixed fixtures and regex-based scoring without LLM judge costs.
+        links:
+          code: https://github.com/trajectoryRL/clawbench
+        tags: [benchmark, deterministic, scenario]
+
+  - id: memory-architecture
+    name: Memory & Architecture
+    icon: "\U0001F9E0"
+    description: Memory systems, context management, and architectural research
+    papers:
+      - title: "Workspace Memory Research"
+        description: >
+          Proposes an offline-first memory architecture using Markdown as the
+          canonical source with a derived SQLite index for entity-centric
+          retrieval, temporal queries, and confidence-bearing opinions that
+          evolve with evidence.
+        links:
+          url: https://docs.openclaw.ai/experiments/research/memory
+        tags: [memory, architecture, offline-first]
+
+  - id: skills-tool-use
+    name: Skills & Tool Use
+    icon: "\U0001F527"
+    description: Skill system design, tool use patterns, and extensions
+    papers:
+      - title: "memory-tools Skill"
+        description: >
+          Agent-controlled memory management with confidence scoring, semantic
+          search, and temporal decay. Provides six memory tools: memory_store,
+          memory_update, memory_forget, memory_search, memory_summarize,
+          and memory_list.
+        links:
+          url: https://playbooks.com/skills/openclaw/skills/memory-tools
+        tags: [skills, memory, tool-use]
+
+# ---- Blog Posts & Technical Articles ----
+blog_posts:
+  - title: "How OpenClaw Works: Understanding AI Agents Through a Real Architecture"
+    description: Deep dive into OpenClaw's Gateway, agentic loop, and tool use patterns.
+    url: https://bibek-poudel.medium.com/how-openclaw-works-understanding-ai-agents-through-a-real-architecture-5d59cc7a4764
+    tags: [architecture, tutorial]
+
+  - title: "How OpenClaw Remembers: A Deep Dive into AI Agent Memory Architecture"
+    description: Explores the two-layer memory system with daily notes and long-term memory.
+    url: https://avasdream.com/blog/openclaw-memory-system-deep-dive
+    tags: [memory, deep-dive]
+
+  - title: "OpenClaw Architecture Guide 2026: Memory, Scaling & Setup"
+    description: Comprehensive guide on memory organization, scaling strategies, and deployment.
+    url: https://rentierdigital.xyz/blog/openclaw-architecture-scaling-guide
+    tags: [architecture, scaling, guide]
+
+  - title: "When AI Gets Physical Hands: A Review of OpenClaw on the Unitree G1 and Other Robots"
+    description: Review of OpenClaw's integration with robotic systems for physical manipulation tasks.
+    url: https://evoailabs.medium.com/when-ai-gets-physical-hands-a-review-of-openclaw-on-the-unitree-g1-and-other-robots-0fbf06a1d4c8
+    tags: [robotics, integration, review]
+
+# ---- Related Projects ----
+projects:
+  - name: OpenClaw
+    description: The official open-source AI assistant platform
+    url: https://github.com/openclaw/openclaw
+
+  - name: Claw-Eval
+    description: LLM agent evaluation harness
+    url: https://github.com/claw-eval/claw-eval
+
+  - name: PinchBench
+    description: Real-world LLM agent benchmark
+    url: https://github.com/pinchbench/skill
+
+  - name: ClawBench
+    description: Deterministic scenario-based evaluation
+    url: https://github.com/trajectoryRL/clawbench
