@@ -1,0 +1,45 @@
+name: Auto-add Paper from Issue
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  add-paper:
+    if: contains(github.event.issue.labels.*.name, 'paper-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Parse issue and update papers.yml
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: python scripts/add_paper_from_issue.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add paper from issue #${{ github.event.issue.number }}"
+          branch: "auto/add-paper-${{ github.event.issue.number }}"
+          title: "Add: ${{ github.event.issue.title }}"
+          body: |
+            Auto-generated from issue #${{ github.event.issue.number }}.
+
+            Closes #${{ github.event.issue.number }}
+          labels: auto-generated

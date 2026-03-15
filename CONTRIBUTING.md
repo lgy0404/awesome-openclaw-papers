@@ -1,51 +1,61 @@
-# Contributing to Awesome OpenClaw Papers
+# Contributing
 
-Thank you for your interest in contributing! This project uses a **data-driven architecture** — all content lives in a single YAML file, and the website + README are generated automatically.
+Thanks for helping grow the OpenClaw research community!
 
-## Quick Start (3 Steps)
+## How It Works
 
-1. **Fork** this repository
-2. **Edit** [`docs/_data/papers.yml`](docs/_data/papers.yml) — the single source of truth
-3. **Submit** a Pull Request — the website auto-rebuilds on merge
+```
+Submit Issue / Edit YAML  →  PR Created  →  Merge  →  Website Auto-Rebuilds
+```
 
-That's it! No need to touch HTML, CSS, or README.md.
+All content lives in one file: [`docs/_data/papers.yml`](docs/_data/papers.yml).
+The website is generated automatically from this file via GitHub Pages.
 
-## Data File Format
+## Option A: Submit via Issue (Easiest)
 
-All entries live in `docs/_data/papers.yml`. Here's how to add each type:
+1. Go to [New Issue → Add Paper / Resource](../../issues/new?template=add-paper.yml)
+2. Fill out the form
+3. A PR is **automatically created** from your submission
+4. Once a maintainer approves and merges, the website updates instantly
+
+No git knowledge required.
+
+## Option B: Edit the Data File Directly
+
+1. Fork this repository
+2. Edit `docs/_data/papers.yml`
+3. Add your entry (see format below)
+4. Submit a Pull Request
 
 ### Adding a Paper
 
-Add your entry under the matching category's `papers` list:
+Find the right category and append your entry:
 
 ```yaml
 - title: "Your Paper Title"
-  authors: "Author A, Author B"     # optional
   description: >
-    A 1-2 sentence summary of the paper's
-    key contribution.
-  date: "2026-03"                    # optional, YYYY-MM
+    Brief summary of the paper's contribution.
+  date: "2026-03"
   links:
     arxiv: https://arxiv.org/abs/XXXX.XXXXX
-    pdf: https://example.com/paper.pdf   # optional
-    code: https://github.com/...         # optional
-    project: https://example.com         # optional
-  tags: [security, agent, benchmark]     # optional
+    code: https://github.com/...
+  tags: [keyword1, keyword2]
 ```
 
-**Required fields:** `title`, `description`, at least one entry in `links`
+**Required:** `title`, `description`, at least one link.
+**Optional:** `date`, `tags`, `authors`, multiple link types (`arxiv`, `pdf`, `code`, `project`, `url`).
 
 ### Adding a Blog Post
 
 ```yaml
 blog_posts:
-  - title: "Your Article Title"
-    description: Brief description of the article.
+  - title: "Article Title"
+    description: Brief description.
     url: https://example.com/article
-    tags: [architecture, tutorial]
+    tags: [topic1, topic2]
 ```
 
-### Adding a Related Project
+### Adding a Project
 
 ```yaml
 projects:
@@ -59,59 +69,27 @@ projects:
 ```yaml
 categories:
   - id: your-category-id
-    name: "Your Category Name"
+    name: "Category Name"
     icon: "🔬"
-    description: Brief description of this category
-    papers:
-      - title: "First Paper"
-        description: >
-          Description here.
-        links:
-          arxiv: https://arxiv.org/abs/XXXX.XXXXX
+    description: Brief description
+    papers: []
 ```
 
-The website and filter buttons will automatically pick up new categories.
+The website automatically picks up new categories.
 
-## Regenerating README.md
+## Validation
 
-The README is auto-generated from the YAML data. After editing `papers.yml`:
-
-```bash
-python3 scripts/generate_readme.py
-```
-
-## Validating Your Changes
-
-A CI check runs automatically on PRs. To validate locally:
+A CI check validates your YAML on every PR. To validate locally:
 
 ```bash
-python3 scripts/validate_papers.py
-```
-
-## Local Preview
-
-To preview the website locally:
-
-```bash
-cd docs
-bundle install
-bundle exec jekyll serve
-# Open http://localhost:4000
+pip install pyyaml
+python scripts/validate_papers.py
 ```
 
 ## Quality Checklist
 
-- [ ] Paper is directly related to OpenClaw or its ecosystem
-- [ ] Description is concise (1-2 sentences) and focuses on the contribution
-- [ ] At least one working link is provided
-- [ ] Entry is placed in the correct category
-- [ ] YAML syntax is valid
+- [ ] Directly related to OpenClaw or its ecosystem
+- [ ] Description is 1-2 sentences, focused on the contribution
+- [ ] At least one working link provided
+- [ ] Placed in the correct category
 - [ ] No duplicate entries
-
-## Don't Want to Edit YAML?
-
-[Submit a paper via GitHub Issue](../../issues/new?template=add-paper.yml) and a maintainer will add it for you.
-
-## Code of Conduct
-
-Please be respectful and constructive. We follow the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
